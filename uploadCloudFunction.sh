@@ -1,0 +1,1 @@
+"/Applications/wechatwebdevtools.app/Contents/MacOS/cli" cloud functions deploy --e cloud1-0gvthixn54ff57a1 --n quickstartFunctions --r --project "/Users/macroxu/Desktop/smallprogram/lovewritecomposition" --report_first --report
