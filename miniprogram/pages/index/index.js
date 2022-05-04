@@ -63,6 +63,12 @@ Page({
     haveCreateCollection: false
   },
 
+  butClick(e){
+    wx.navigateTo({
+      url: `/pages/compositionTutorialCatalog/index?envId=${this.data.selectedEnv.envId}`,
+    });
+
+  },
   onClickPowerInfo(e) {
     const index = e.currentTarget.dataset.index;
     const powerList = this.data.powerList;

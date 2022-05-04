@@ -1,0 +1,23 @@
+<!--pages/compositionTutorialCatalog/index.wxml-->
+<view class="container">
+  <view class="title">作文秘籍</view>
+  <view class="catalog" wx:key="catalogCode" wx:for="{{tutorialCatalogList}}" wx:for-item="catalog">
+    <view class="catalog_info" data-index="{{index}}" bindtap="onClickCatalogInfo">
+      <view class="catalog_info_text">
+        <view class="catalog_info_text_title">{{catalog.catalogName}}</view>
+        <view class="catalog_info_text_tip">{{catalog.tip}}</view>
+      </view>
+      <image wx:if="{{!catalog.showItem}}" class="catalog_info_more" src="../../images/arrow.svg"></image>
+      <image wx:if="{{catalog.showItem}}" class="catalog_info_less" src="../../images/arrow.svg"></image>
+    </view>
+    <view wx:if="{{catalog.showItem}}">
+      <view wx:key="title" wx:for="{{catalog.articles}}" wx:for-item="article">
+        <view class="line"></view>
+        <view class="catalog_item" bindtap="jumpPage" data-page="{{article.page}}">
+          <view class="catalog_item_title">{{article.title}}</view>
+          <image class="catalog_item_icon" src="../../images/arrow.svg"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

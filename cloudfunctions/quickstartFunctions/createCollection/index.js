@@ -5,7 +5,7 @@ cloud.init({
 });
 
 const db = cloud.database();
-
+ 
 // 创建集合云函数入口函数
 exports.main = async (event, context) => {
   try {
