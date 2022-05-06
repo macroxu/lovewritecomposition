@@ -1,31 +1,14 @@
-// pages/compositionTutorialCatalog/index.js
-const { envList } = require('../../envList.js');
-
+// pages/article/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    tutorialCatalogList:[],
-  },
-
-  
-  jumpPage(e) {
-    wx.navigateTo({
-      url: `/pages/article/index?envId=${this.data.envId}&articleId=${e.currentTarget.dataset.articleid}`,
-    });
-  },
-
-
-  onClickCatalogInfo(e) {
-    const index = e.currentTarget.dataset.index;
-    const tutorialCatalogList = this.data.tutorialCatalogList;
-    tutorialCatalogList[index].showItem = !tutorialCatalogList[index].showItem;
+    scrollHeight:'300vh',
+    article:{articleContent:'<div >'+
     
-    this.setData({
-      tutorialCatalogList
-      });
+  '</div>'},
     
   },
 
@@ -34,8 +17,23 @@ Page({
    */
   onLoad(options) {
     this.setData({
-      envId: envList[0].envId
+      articleId: options.articleId
     });
+
+    let that=this;
+    wx.getSystemInfo({
+      success (res) {
+        console.log(res.model)
+        console.log(res.pixelRatio)
+        console.log(res.windowWidth)
+        console.log(res.windowHeight)
+        console.log(res.language)
+        console.log(res.version)
+        console.log(res.platform)
+        that.setData({scrollHeight:res.windowHeight});
+      }
+    })
+
     wx.showLoading({
       title: '',
     });
@@ -45,11 +43,12 @@ Page({
         env: this.data.envId
       },
       data: {
-        type: 'selectTutorialCatalog'
+        type: 'getArticle',
+        articleId: options.articleId
       }
     }).then((resp) => {
       this.setData({
-        tutorialCatalogList: resp.result.data
+        article: resp.result
       });
       wx.hideLoading();
     }).catch((e) => {
@@ -59,6 +58,7 @@ Page({
       });
       wx.hideLoading();
     });
+
   },
 
   /**

@@ -1,0 +1,17 @@
+/* pages/article/index.wxss */
+.titleh3{
+  text-align:center !important;
+  color:pink!important;
+}
+.title{
+  font-family: PingFang SC;
+  font-weight: 500;
+  font-size: 44rpx;
+  text-align:center;
+  margin-bottom: 5rpx !important;
+}
+.paragraph{
+  margin-top: 4rpx !important;
+  padding-left:1rpx;
+  margin: 0ch;
+}

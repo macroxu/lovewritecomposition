@@ -10,9 +10,23 @@ exports.main = async (event, context) => {
   // 返回数据库查询结果
   let tutorialcatalog= await db.collection('tutorialcatalog').get();
   console.debug(JSON.stringify(tutorialcatalog))
-  tutorialcatalog.data.forEach(element => {
-    element.articles=[{'title':'articleName'}];
-  });
+
+  for (const element of tutorialcatalog.data) {
+    //获取catalogID
+    let catalogCode=element.catalogCode
+
+    let articles= await db.collection('article').where({
+      catalogCode: catalogCode,
+    }).get()
+    
+    let articleDetailList=[]
+    articles.data.forEach(element => {
+      articleDetailList.push({'articleId':element.articleId,'title':element.title})
+    });
+
+    element.articles=articleDetailList;
+  }
+   
    
   return tutorialcatalog;
 };

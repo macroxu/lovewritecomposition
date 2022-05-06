@@ -1,0 +1,9 @@
+<!--pages/article/index.wxml articleId-->
+<view style="height: 100%;">
+  <scroll-view  class='scrollView' style=" height:{{scrollHeight}};" scroll-y="true"   >
+    <view style="margin-left:2vh;margin-right: 2vh; line-height: 1.5em;">
+      <rich-text space="nbsp" nodes="{{article.articleContent}}"></rich-text>
+    </view>
+  </scroll-view>
+</view>
+ 

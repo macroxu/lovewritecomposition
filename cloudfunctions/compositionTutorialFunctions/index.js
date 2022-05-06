@@ -2,6 +2,7 @@
 const cloud = require('wx-server-sdk')
  
 const selectTutorialCatalog = require('./selectTutorialCatalog/index');
+const getArticle = require('./getArticle/index');
 cloud.init()
 
 // 云函数入口函数
@@ -11,6 +12,9 @@ exports.main = async (event, context) => {
   switch (event.type) {
     case 'selectTutorialCatalog':
       return await selectTutorialCatalog.main(event, context);
+
+      case 'getArticle':
+      return await getArticle.main(event, context);
   }
 
 
