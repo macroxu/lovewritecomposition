@@ -1,0 +1,26 @@
+<!--pages/goodSentence/index.wxml-->
+<view class="container">
+  <view style="width: 100%;">
+    <van-search value="{{ inputKeyValue }}" bind:search="onSearch" bind:change="onChange" placeholder="请输入查询的好句关键词,如‘春天’" 
+    use-action-slot >
+      <view slot="action" bind:tap="onClick">搜索</view>
+    </van-search>
+  </view>
+
+  <view style="width:calc(100% - 40rpx); margin-left:20rpx; margin-right: 20rpx;" wx:for="{{hotwordList}}" wx:for-item="hotwordItem">
+    <view style="width: 100%;">
+      <text>{{hotwordItem.catalog}}</text>
+    </view>
+    <view style="width: 100%; display: flex; height: 50%; flex-direction: row ; flex-wrap: wrap">
+      <span style="margin:12rpx;" wx:for="{{hotwordItem.hotword}}" wx:for-item="hotword">
+
+        <van-tag bindtap="onTagTab" data-id="{{hotword}}" wx:if="{{index%3==0}}" size='medium' plain='true' type="primary">{{hotword}}</van-tag>
+        <van-tag bindtap="onTagTab" data-id="{{hotword}}" wx:if="{{index%3==1}}" plain='true' text-color='#07c160' size='medium' type="primary">{{hotword}}</van-tag>
+        <van-tag bindtap="onTagTab" data-id="{{hotword}}" wx:if="{{index%3==2}}" size='medium' text-color='rgb(114, 50, 221)' plain='true' type="primary">{{hotword}}</van-tag>
+      </span>
+
+    </view>
+  </view>
+  <van-toast id="van-toast" />
+
+</view>

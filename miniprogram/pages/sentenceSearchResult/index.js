@@ -1,54 +1,48 @@
-// pages/compositionTutorialCatalog/index.js
+// pages/sentenceSearchResult/index.js
 const { envList } = require('../../envList.js');
-
 Page({
+
   /**
    * 页面的初始数据
    */
   data: {
-    tutorialCatalogList:[],
-  },
-
-  
-  jumpPage(e) {
-    wx.navigateTo({
-      url: `/pages/article/index?envId=${this.data.envId}&articleId=${e.currentTarget.dataset.articleid}`,
-    });
-  },
-
-  onClickCatalogInfo(e) {
-    const index = e.currentTarget.dataset.index;
-    const tutorialCatalogList = this.data.tutorialCatalogList;
-    tutorialCatalogList[index].showItem = !tutorialCatalogList[index].showItem;
-    
-    this.setData({
-      tutorialCatalogList
-      });
-    
+    keyword:"",
+    sentenceList:[],
+    noDataTip:"加载数据中...."
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    
+    //保存keyword
     this.setData({
-      envId: envList[0].envId
+      keyword: options.keyword
     });
+
+    //查询好句
     wx.showLoading({
       title: '',
     });
     wx.cloud.callFunction({
       name: 'compositionTutorialFunctions',
       config: {
-        env: this.data.envId
+        env:  envList[0].envId
       },
       data: {
-        type: 'selectTutorialCatalog'
+        type: 'getSentenceByKey',
+        keyword: options.keyword
       }
     }).then((resp) => {
       this.setData({
-        tutorialCatalogList: resp.result.data
+        sentenceList: resp.result.data
+        
       });
+      if(resp.result.data.length==0)
+        {
+          this.setData({noDataTip:"我们加快充实这个查询的好句,敬请期待。"})
+        }
       wx.hideLoading();
     }).catch((e) => {
       console.log(e);
