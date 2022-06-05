@@ -1,11 +1,13 @@
-// pages/wrongWordLib/index.js
+// pages/goodWordShowList/index.js
+
+const { envList } = require('../../envList.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    wordList:[]
   },
 
   /**
@@ -13,6 +15,34 @@ Page({
    */
   onLoad(options) {
 
+     //查询好句
+     wx.showLoading({
+      title: '',
+    });
+    wx.cloud.callFunction({
+      name: 'compositionTutorialFunctions',
+      config: {
+        env:  envList[0].envId
+      },
+      data: {
+        type: 'getWordByCatalog',
+        catalog: options.catalog,
+        subcatalog:options.subcatalog
+      }
+    }).then((resp) => {
+      this.setData({
+        wordList: resp.result.name
+        
+      });
+      
+      wx.hideLoading();
+    }).catch((e) => {
+      console.log(e);
+      this.setData({
+        showUploadTip: true
+      });
+      wx.hideLoading();
+    });
   },
 
   /**

@@ -1,16 +1,14 @@
 // pages/goodSentence/index.js
-
- 
+const { envList } = require('../../envList.js');
 import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     inputKeyValue:'' ,//输入的关键词,
-    hotwordList:[{'catalog':'美景',hotword:['春天','夏天','秋天']},
-    {'catalog':'人物',hotword:['妈妈','爸爸','奶奶']}
+    hotwordList:[{'catalog':'美景',hotword:[]},
+    {'catalog':'人物',hotword:[]}
   ]
   },
   onClick(){
@@ -42,7 +40,32 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    this.setData({
+      envId: envList[0].envId
+    });
+    wx.showLoading({
+      title: '',
+    });
+    wx.cloud.callFunction({
+      name: 'compositionTutorialFunctions',
+      config: {
+        env: this.data.envId
+      },
+      data: {
+        type: 'getSentenceKeyWord'
+      }
+    }).then((resp) => {
+      this.setData({
+        hotwordList: resp.result.data
+      });
+      wx.hideLoading();
+    }).catch((e) => {
+      console.log(e);
+      this.setData({
+        showUploadTip: true
+      });
+      wx.hideLoading();
+    });
   },
 
   /**

@@ -1,23 +1,17 @@
-// pages/goodWord/index.js
-import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
 const { envList } = require('../../envList.js');
-
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    wordCatalogList:[]
+    compositionTutorial:[]
   },
 
-  onTagTab(e){
-    console.debug('你好');
-    let subcatalog=e.currentTarget.dataset.id;
-    let catalog=e.currentTarget.dataset.catalog;
-    //Toast(subcatalog+catalog);
+
+  jumpPage(e) {
     wx.navigateTo({
-      url: `/pages/goodWordShowList/index?catalog=${catalog}&subcatalog=${subcatalog}`,
+      url: `/pages/compositionTutorialArticle/index?articleId=${e.currentTarget.dataset.articleid}`,
     });
   },
 
@@ -37,11 +31,11 @@ Page({
         env: this.data.envId
       },
       data: {
-        type: 'getWordCatalog'
+        type: 'getCompositionTutorial'
       }
     }).then((resp) => {
       this.setData({
-        wordCatalogList: resp.result.data
+        compositionTutorial: resp.result.data
       });
       wx.hideLoading();
     }).catch((e) => {

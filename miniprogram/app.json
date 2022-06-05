@@ -1,18 +1,20 @@
 {
   "pages": [
     "pages/goodSentence/index",
+    "pages/compositionTutorial/index",
+    "pages/compositionTutorialArticle/index",
     "pages/sentenceSearchResult/index",
     "pages/goodWord/index",
+    "pages/goodWordShowList/index",
     "pages/compositionTutorialCatalog/index",
     "pages/article/index",
-    "pages/wrongWordLib/index"
-   
+    "pages/NewWordLib/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "作文秘籍",
+    "navigationBarTitleText": "作文素材小助手",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -27,12 +29,12 @@
       "iconPath": "images/ic_word_black_48px.jpg",
       "selectedIconPath": "images/ic_word_green_48px.jpg"
     }, {
-      "pagePath": "pages/compositionTutorialCatalog/index",
+      "pagePath": "pages/compositionTutorial/index",
       "text": "写作秘籍",
       "iconPath": "images/ic_tutorial_black_48px.jpg",
       "selectedIconPath": "images/ic_tutorial_green_48px.jpg"
     },{
-      "pagePath": "pages/wrongWordLib/index",
+      "pagePath": "pages/NewWordLib/index",
       "text": "生字词库",
       "iconPath": "images/ic_wordlib_black_48px.jpg",
       "selectedIconPath": "images/ic_wordlib_green_48px.jpg"
@@ -43,6 +45,7 @@
   "usingComponents": {
     "van-search": "@vant/weapp/search/index",
     "van-toast": "@vant/weapp/toast/index",
-    "van-tag": "@vant/weapp/tag/index"
+    "van-tag": "@vant/weapp/tag/index",
+    "van-button": "@vant/weapp/button/index"
   }
 }

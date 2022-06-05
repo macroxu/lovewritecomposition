@@ -1,0 +1,17 @@
+<!--pages/wrongWordLib/index.wxml-->
+<view>
+  <view style="display: flex; margin-bottom: 20rpx;">
+    <input style=" margin-left:20rpx;background-color:gainsboro;" 
+    bindinput="onSetNewWord"  class="weui-input" maxlength="10" placeholder="添加生词" value="{{newInputWord}}" />
+    <van-button  bind:click="onAddNewWord" style='margin-left:20rpx;' plain size="mini" type="primary">添加生字词</van-button>
+  </view>
+  <view>
+    <view style="width: 100%; display: flex; height: 50%; flex-direction: row ; flex-wrap: wrap">
+
+      <span style="margin:12rpx;" wx:for="{{newWordList}}" wx:for-item="wordItem">
+        <van-tag bindtap="onTagTab" data-id="{{wordItem._id}}" closeable bind:close="onClose" size='large' plain='true' type="primary">{{wordItem.word}}</van-tag>
+      </span>
+    </view>
+  </view>
+  <van-toast id="van-toast" />
+</view>

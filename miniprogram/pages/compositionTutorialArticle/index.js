@@ -1,5 +1,4 @@
-// pages/goodWord/index.js
-import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
+// pages/article/index.js
 const { envList } = require('../../envList.js');
 
 Page({
@@ -8,17 +7,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    wordCatalogList:[]
-  },
-
-  onTagTab(e){
-    console.debug('你好');
-    let subcatalog=e.currentTarget.dataset.id;
-    let catalog=e.currentTarget.dataset.catalog;
-    //Toast(subcatalog+catalog);
-    wx.navigateTo({
-      url: `/pages/goodWordShowList/index?catalog=${catalog}&subcatalog=${subcatalog}`,
-    });
+    scrollHeight:'300vh',
+    article:{articleContent:'<div >'+
+    
+  '</div>'},
+    
   },
 
   /**
@@ -26,22 +19,38 @@ Page({
    */
   onLoad(options) {
     this.setData({
-      envId: envList[0].envId
+      articleId: options.articleId
     });
+
+    let that=this;
+    wx.getSystemInfo({
+      success (res) {
+        console.log(res.model)
+        console.log(res.pixelRatio)
+        console.log(res.windowWidth)
+        console.log(res.windowHeight)
+        console.log(res.language)
+        console.log(res.version)
+        console.log(res.platform)
+        that.setData({scrollHeight:res.windowHeight});
+      }
+    })
+
     wx.showLoading({
       title: '',
     });
     wx.cloud.callFunction({
       name: 'compositionTutorialFunctions',
       config: {
-        env: this.data.envId
+        envId: envList[0].envId
       },
       data: {
-        type: 'getWordCatalog'
+        type: 'getCompositionTutorialById',
+        articleId: options.articleId
       }
     }).then((resp) => {
       this.setData({
-        wordCatalogList: resp.result.data
+        article: resp.result
       });
       wx.hideLoading();
     }).catch((e) => {
@@ -51,6 +60,7 @@ Page({
       });
       wx.hideLoading();
     });
+
   },
 
   /**

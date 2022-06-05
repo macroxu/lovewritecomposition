@@ -1,0 +1,11 @@
+<view class="container" style="width: 100%;">
+  <view wx:key="title" style="width: 100%;" wx:for="{{compositionTutorial}}" wx:for-item="tutorialArticle">
+    <view class="line"></view>
+    <view class="catalog_item" bindtap="jumpPage" data-articleid="{{tutorialArticle._id}}">
+      <view class="catalog_item_title">{{tutorialArticle.title}}</view>
+      <image class="catalog_item_icon" src="../../images/arrow.svg"></image>
+    </view>
+    <view class="line"></view>
+  </view>
+
+</view>
