@@ -3,15 +3,13 @@
   <view class="title">{{}}</view>
   <!--查无数据，显示-->
 
-
   <view wx:if="{{sentenceList.length > 0}}" style=" width: 100%;  display: flex; flex-direction: column ; justify-content: flex-start;flex-wrap: wrap">
-    <view class="catalog" style="padding-left:50rpx;padding-right:50rpx; " wx:key="sentence._id" wx:for="{{sentenceList}}" wx:for-item="sentence">
-      <text>{{ (index+1)+' '+sentence.content}}</text>
+    <view class="catalog" style="padding-left:50rpx;padding-top:26rpx;padding-right:50rpx; " wx:key="sentence._id" wx:for="{{sentenceList}}" wx:for-item="sentence">
+      <text style="border-bottom:4rpx dashed #cccccc;">{{ (index+1)+' '+sentence.content}}</text>
+       
     </view>
   </view>
   <view wx:else>
     <text> {{noDataTip}}</text>
   </view>
-
-
 </view>

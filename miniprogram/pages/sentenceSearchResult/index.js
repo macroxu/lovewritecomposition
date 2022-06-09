@@ -16,6 +16,10 @@ Page({
    */
   onLoad(options) {
     
+    wx.setNavigationBarTitle({
+      title: options.keyword,
+    })
+
     //保存keyword
     this.setData({
       keyword: options.keyword

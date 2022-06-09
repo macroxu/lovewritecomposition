@@ -15,6 +15,7 @@ const addNewWord = require('./addNewWord/index');
 const removeNewWord = require('./removeNewWord/index');
 const getNewWord = require('./getNewWord/index');
 
+const getWordByCatalogv1=require('./getWordByCatalogv1/index');
 
 cloud.init()
 
@@ -41,6 +42,9 @@ exports.main = async (event, context) => {
 
     case 'getWordByCatalog':
       return await getWordByCatalog.main(event, context);
+
+    case 'getWordByCatalogv1':
+      return  await getWordByCatalogv1.main(event, context);
     case 'getCompositionTutorial':
       return await getCompositionTutorial.main(event, context);
     case 'getCompositionTutorialById':

@@ -28,6 +28,11 @@ Page({
       url: `/pages/sentenceSearchResult/index?keyword=${this.data.inputKeyValue}`,
     });
 
+    //去除当前的搜索项
+    this.setData({
+      inputKeyValue: "",
+    });
+
   },
   onChange(e) {
     this.setData({

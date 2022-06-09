@@ -1,6 +1,13 @@
 <!--pages/goodWordShowList/index.wxml-->
-<view style="width: 100%; display: flex; height: 50%; flex-direction: row ; flex-wrap: wrap">
-<span style="margin:12rpx;" wx:key="index"  wx:for="{{wordList}}" wx:for-item="item">
-  <van-tag   size='medium' plain='true' type="primary">{{item}}</van-tag>
-</span>
+
+<van-index-bar index-list="{{ indexList }}">
+<view wx:key="index" wx:for="{{wordIndexList}}" wx:for-item="item"> 
+  <van-index-anchor index="{{item.anchor}}" />
+  <view style="width: 100%; display: flex; height: 50%; flex-direction: row ; flex-wrap: wrap">
+
+    <span style="margin:12rpx;" wx:key="index" wx:for="{{item.words}}" wx:for-item="word">
+      <van-tag size='medium' plain='true' type="primary">{{word.name}}</van-tag>
+    </span>
+  </view>
 </view>
+</van-index-bar>

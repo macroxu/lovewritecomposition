@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "pinyin": "^2.11.2",
     "wx-server-sdk": "~2.6.1"
   }
 }
