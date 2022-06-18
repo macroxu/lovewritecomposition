@@ -35,7 +35,7 @@ exports.main = async (event, context) => {
       return await getSentenceKeyWord.main(event, context);
 
     case 'getSentenceByKey':
-      return await getSentenceByKey.main(event, context);
+      return await getSentenceByKey.main(event, context,openId);
 
     case 'getWordCatalog':
       return await getWordCatalog.main(event, context);
