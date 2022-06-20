@@ -1,0 +1,55 @@
+<!--pages/sentenceSearchResult/index.wxml-->
+<view class="container">
+  <view class="title">{{}}</view>
+  <!--查无数据，显示-->
+
+  <view wx:if="{{wordList.count > 0}}" style=" width: 100%; display: flex; height: 50%; flex-direction: row ; flex-wrap: wrap ">
+    <view wx:if="{{wordList.wordList.length > 0}}" style="width: 100%; display: flex; height: 50%; flex-direction: row ; flex-wrap: wrap">
+      <view  class='wordcatalogTitle'style="width: 100%;">
+        <text style="color: royalblue;">好词</text>
+      </view>
+      <span class="worditem"  wx:for="{{wordList.wordList}}" wx:for-item="word">
+
+        <view  >{{word.name}}</view>
+        <!--
+        <van-tag bindtap="onTagTab" data-id="{{word._id}}" wx:if="{{index%3==0}}" size='medium' plain='true' type="primary">{{word.name}}</van-tag>
+        <van-tag bindtap="onTagTab" data-id="{{word._id}}" wx:if="{{index%3==1}}" plain='true' text-color='#07c160' size='medium' type="primary">{{word.name}}</van-tag>
+        <van-tag bindtap="onTagTab" data-id="{{word._id}}" wx:if="{{index%3==2}}" size='medium' text-color='rgb(114, 50, 221)' plain='true' type="primary">{{word.name}}</van-tag>
+        -->
+      </span>
+
+    </view>
+
+    <view wx:if="{{wordList.dieciList.length > 0}}" style="width: 100%; display: flex; height: 50%; flex-direction: row ; flex-wrap: wrap">
+      <view class='wordcatalogTitle' style="width: 100%;">
+        <text style="color: royalblue;">叠词</text>
+      </view>
+      <span class="worditem"  wx:for="{{wordList.dieciList}}" wx:for-item="word">
+        <view class="catalog_item_title">{{word.name}}</view>
+      </span>
+
+    </view>
+
+    <view wx:if="{{wordList.chengyuList.length > 0}}" style="width: 100%; display: flex; height: 50%; flex-direction: row ; flex-wrap: wrap">
+      <view class='wordcatalogTitle' style="width: 100%; ">
+        <text style="color: royalblue">成语</text>
+      </view>
+      <span class="worditem"  wx:for="{{wordList.chengyuList}}" wx:for-item="word">
+        <view class="catalog_item_title">{{word.name}}</view>
+      </span>
+    </view>
+
+    <view wx:if="{{wordList.xiehouyuList.length > 0}}" style="width: 100%; display: flex; height: 50%; flex-direction: column ; flex-wrap: wrap">
+      <view  class='wordcatalogTitle' style="width: 100%;">
+        <text style="color: royalblue;">歇后语</text>
+      </view>
+      <span class="worditem"  wx:for="{{wordList.xiehouyuList}}" wx:for-item="word">
+        <view class="catalog_item_title">{{word.name}}</view>
+      </span>
+    </view>
+
+  </view>
+  <view wx:else>
+    <text> {{noDataTip}}</text>
+  </view>
+</view>

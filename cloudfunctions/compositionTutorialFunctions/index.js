@@ -17,6 +17,8 @@ const getNewWord = require('./getNewWord/index');
 
 const getWordByCatalogv1=require('./getWordByCatalogv1/index');
 
+const getGoodWordByKeyChar=require('./getGoodWordByKeyChar/index');
+
 cloud.init()
 
 
@@ -58,7 +60,11 @@ exports.main = async (event, context) => {
 
     case 'getNewWord':
       return await getNewWord.main(event, context,openId);
-
+    
+      case 'getGoodWordByKeyChar':
+        return await getGoodWordByKeyChar.main(event, context,openId);
+  
+      
 
   }
 

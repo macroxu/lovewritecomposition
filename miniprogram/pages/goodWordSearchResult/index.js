@@ -1,73 +1,52 @@
-// pages/goodWord/index.js
-import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
+// pages/sentenceSearchResult/index.js
 const { envList } = require('../../envList.js');
-
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    wordCatalogList:[],
-    inputKeyValue:'' ,//输入的关键字,
-  },
-  onClick(){
-    this.onSearchByKeyChar();
-  },
-  onSearch() {
-    this.onSearchByKeyChar();
-  },
-
-  onChange(e) {
-    this.setData({
-      inputKeyValue: e.detail,
-    });
-  },
-  onSearchByKeyChar(){
-    //假如 查询信息不为空，跳转查询界面
-    wx.navigateTo({
-      url: `/pages/goodWordSearchResult/index?keychar=${this.data.inputKeyValue}`,
-    });
-
-    //去除当前的搜索项
-    this.setData({
-      inputKeyValue: "",
-    });
-
-  },
-
-  onTagTab(e){
-    console.debug('你好');
-    let subcatalog=e.currentTarget.dataset.id;
-    let catalog=e.currentTarget.dataset.catalog;
-    //Toast(subcatalog+catalog);
-    wx.navigateTo({
-      url: `/pages/goodWordShowList/index?catalog=${catalog}&subcatalog=${subcatalog}`,
-    });
+    keychar:"",//
+    wordList:[],
+    noDataTip:"加载数据中...."
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    
+    wx.setNavigationBarTitle({
+      title: "\""+options.keychar+"\""+"相关的好词",
+    })
+
+    //保存keyword
     this.setData({
-      envId: envList[0].envId
+      keychar: options.keychar
     });
+
+    //查询好词
     wx.showLoading({
       title: '',
     });
     wx.cloud.callFunction({
       name: 'compositionTutorialFunctions',
       config: {
-        env: this.data.envId
+        env:  envList[0].envId
       },
       data: {
-        type: 'getWordCatalog'
+        type: 'getGoodWordByKeyChar',
+        keychar: options.keychar
       }
     }).then((resp) => {
       this.setData({
-        wordCatalogList: resp.result.data
+        wordList: resp.result
+        
       });
+      if(resp.result.count==0)
+        {
+          this.setData({noDataTip:"我们加快充实这个查询的好词,敬请期待。"})
+        }
       wx.hideLoading();
     }).catch((e) => {
       console.log(e);

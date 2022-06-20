@@ -5,6 +5,7 @@
     "pages/compositionTutorialArticle/index",
     "pages/sentenceSearchResult/index",
     "pages/goodWord/index",
+    "pages/goodWordSearchResult/index",
     "pages/goodWordShowList/index",
     "pages/compositionTutorialCatalog/index",
     "pages/article/index",

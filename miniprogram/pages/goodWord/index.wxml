@@ -1,13 +1,20 @@
 <!--pages/goodSentence/index.wxml-->
 <view class="container">
-
+  <!-- 查询接口-->
+  <view style="width: 100%;">
+    <van-search value="{{ inputKeyValue }}" bind:search="onSearch" bind:change="onChange" placeholder="请输入查询好词的关键字,如‘美’" 
+    use-action-slot >
+      <view slot="action" bind:tap="onClick">搜索</view>
+    </van-search>
+  </view>
+  
   <view style="width:calc(100% - 40rpx); margin-left:20rpx; margin-right: 20rpx;" wx:for="{{wordCatalogList}}" wx:for-item="wordCatalog">
     <view style="width: 100%;">
       <text>{{wordCatalog.catalog}}</text>
     </view>
     <view style="width: 100%; display: flex; height: 50%; flex-direction: row ; flex-wrap: wrap">
 
-      <span style="margin:12rpx;"  wx:for="{{wordCatalog.subcatalog}}" wx:for-item="subcatalog">
+      <span style="margin:12rpx;" wx:for="{{wordCatalog.subcatalog}}" wx:for-item="subcatalog">
         <van-tag bindtap="onTagTab" data-catalog="{{wordCatalog.catalog}}" data-id="{{subcatalog}}" wx:if="{{index%3==0}}" size='medium' plain='true' type="primary">{{subcatalog}}</van-tag>
         <van-tag bindtap="onTagTab" data-catalog="{{wordCatalog.catalog}}" data-id="{{subcatalog}}" wx:if="{{index%3==1}}" plain='true' text-color='#07c160' size='medium' type="primary">{{subcatalog}}</van-tag>
         <van-tag bindtap="onTagTab" data-catalog="{{wordCatalog.catalog}}" data-id="{{subcatalog}}" wx:if="{{index%3==2}}" size='medium' text-color='rgb(114, 50, 221)' plain='true' type="primary">{{subcatalog}}</van-tag>

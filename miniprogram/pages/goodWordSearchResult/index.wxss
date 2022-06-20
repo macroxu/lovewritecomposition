@@ -1,0 +1,12 @@
+/* pages/goodWordSearchResult/index.wxss */
+.wordcatalogTitle{
+  width: 100%;
+  margin-left: 14rpx;
+  font-weight: 500;
+  margin-top: 14rpx;
+  margin-bottom: 14rpx;
+}
+.worditem{
+  margin-left:8rpx;margin-right: 8rpx;margin-top:4rpx;margin-bottom: 4rpx;
+  font-size: var(--tag-font-size,14px);
+}
