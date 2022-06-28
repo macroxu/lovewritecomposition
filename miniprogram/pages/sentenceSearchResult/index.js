@@ -25,6 +25,13 @@ Page({
       keyword: options.keyword
     });
 
+    let functionType='getSentenceByKey'
+    if(options.type=="keyword")
+    {
+      functionType='getSentenceByKeyv1'
+    }
+
+
     //查询好句
     wx.showLoading({
       title: '',
@@ -35,7 +42,7 @@ Page({
         env:  envList[0].envId
       },
       data: {
-        type: 'getSentenceByKey',
+        type: functionType,
         keyword: options.keyword
       }
     }).then((resp) => {

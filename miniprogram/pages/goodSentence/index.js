@@ -18,14 +18,17 @@ Page({
     this.onSearchByKeyWord();
   },
   onTagTab(e){
-    this.setData({inputKeyValue:e.currentTarget.dataset.id})
-    this.onSearchByKeyWord();
+    //this.setData({inputKeyValue:e.currentTarget.dataset.id})
+    
+    wx.navigateTo({
+      url: `/pages/sentenceSearchResult/index?keyword=${e.currentTarget.dataset.id}&type=keyword`,
+    });
   },
   onSearchByKeyWord(){
     //假如 查询信息不为空，跳转查询界面
     
     wx.navigateTo({
-      url: `/pages/sentenceSearchResult/index?keyword=${this.data.inputKeyValue}`,
+      url: `/pages/sentenceSearchResult/index?keyword=${this.data.inputKeyValue}&type=search`,
     });
 
     //去除当前的搜索项

@@ -5,6 +5,9 @@ const selectTutorialCatalog = require('./selectTutorialCatalog/index');
 const getArticle = require('./getArticle/index');
 const getSentenceKeyWord = require('./getSentenceKeyWord/index');
 const getSentenceByKey = require('./getSentenceByKey/index');
+const getSentenceByKeyv1 = require('./getSentenceByKeyv1/index');
+
+
 const getWordCatalog = require('./getWordCatalog/index');
 const getWordByCatalog = require('./getWordByCatalog/index');
 
@@ -38,6 +41,11 @@ exports.main = async (event, context) => {
 
     case 'getSentenceByKey':
       return await getSentenceByKey.main(event, context,openId);
+
+    case 'getSentenceByKeyv1':
+        return await getSentenceByKeyv1.main(event, context,openId);
+  
+      
 
     case 'getWordCatalog':
       return await getWordCatalog.main(event, context);
