@@ -54,7 +54,7 @@ exports.main = async (event, context) => {
       return await getWordByCatalog.main(event, context);
 
     case 'getWordByCatalogv1':
-      return  await getWordByCatalogv1.main(event, context);
+      return  await getWordByCatalogv1.main(event, context,openId);
     case 'getCompositionTutorial':
       return await getCompositionTutorial.main(event, context);
     case 'getCompositionTutorialById':
